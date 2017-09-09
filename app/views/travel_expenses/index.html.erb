@@ -1,0 +1,29 @@
+<header>
+  <h1> Nouveau Déplacement </h1>
+</header>
+
+<main>
+  <section id="new-travel-form">
+    <%= simple_form_for @travel do |f| %>
+      <%= f.input :travel_date, label: "Date" %>
+      <%= f.input :travel_purpose, label: "Motif" %>
+      <%= f.input :start_place_name, label: "De" %>
+      <%= f.input :end_place_name, label: "A" %>
+      <%= f.input :return, as: :boolean, checked_value: true, unchecked_value: false, label: "Aller / Retour" %>
+      <%= f.input :distance, hint: "En km" %>
+      <%= f.button :submit, "Enregistrer" %>
+    <% end %>
+  </section>
+
+  <section id="travels-list">
+    <h2> Historique </h2>
+      <ul class="list-unstyled">
+        <% @travels.each do |t| %>
+          <li>
+            <%= t.travel_date %>&nbsp;-&nbsp;<strong>De</strong>&nbsp;<%= t.start_place_name %>
+            <strong>à</strong>&nbsp;<%= t.end_place_name %>
+          </li>
+        <% end %>
+      </ul>
+  </section>
+</main>
