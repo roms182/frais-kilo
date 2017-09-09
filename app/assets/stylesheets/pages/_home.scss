@@ -2,8 +2,24 @@
 
 main, header{
   width:70%;
-  margin:auto;
-}
-section{
+  margin:10px auto;
+  display:flex;
+  flex-wrap:wrap;
 
+    section{
+      flex: 1 1 auto;
+      padding:0px 40px;
+      min-width:400px;
+
+        table{
+          width:100%;
+          margin:10px auto;
+
+            tr{
+              td:nth-of-type(1){
+                width:70%;
+              }
+            }
+        }
+    }
 }

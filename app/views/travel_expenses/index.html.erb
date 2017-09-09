@@ -1,11 +1,12 @@
-<header>
-  <h1> Nouveau Déplacement </h1>
-</header>
+
+
 
 <main>
   <section id="new-travel-form">
+  <h1> Nouveau Déplacement </h1>
     <%= simple_form_for @travel do |f| %>
-      <%= f.input :travel_date, label: "Date" %>
+      <%= f.input :travel_date, as: :string, input_html: { class: 'form-control',
+        id: "datetimepicker4"},label: "Date" %>
       <%= f.input :travel_purpose, label: "Motif" %>
       <%= f.input :start_place_name, label: "De" %>
       <%= f.input :end_place_name, label: "A" %>
@@ -13,17 +14,34 @@
       <%= f.input :distance, hint: "En km" %>
       <%= f.button :submit, "Enregistrer" %>
     <% end %>
+
   </section>
 
   <section id="travels-list">
     <h2> Historique </h2>
-      <ul class="list-unstyled">
-        <% @travels.each do |t| %>
-          <li>
-            <%= t.travel_date %>&nbsp;-&nbsp;<strong>De</strong>&nbsp;<%= t.start_place_name %>
-            <strong>à</strong>&nbsp;<%= t.end_place_name %>
-          </li>
-        <% end %>
-      </ul>
+      <% months = @travels.pluck(:travel_date).map{ |d| d.month}.uniq %>
+      <% months_name = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"] %>
+
+      <% months.sort { |x,y| y <=> x }.each do |m| %>
+        <table>
+        <tr>
+            <td><strong><%= months_name[m-1] %></strong></td>
+            <td><strong><%= @travels.select{ |k| k.travel_date.month == m }.map { |x| x.total_km }.inject(0){|sum,x| sum + x }.to_s.gsub('.', ',') + " km" %></strong></td>
+
+        </tr>
+          <% @travels.select{ |k| k.travel_date.month == m }.each do |t| %>
+            <tr>
+              <td>
+              <%= t.travel_date.day %>/<%= m < 10 ? "0#{m}" : m %>&nbsp;:&nbsp;
+              <%= t.start_place_name %>&nbsp;-&nbsp;
+              <%= t.end_place_name %>&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+              <%= t.total_km.to_s.gsub('.', ',') + " km"%>
+              </td>
+              </tr>
+          <% end %>
+        </table>
+      <% end %>
   </section>
 </main>
