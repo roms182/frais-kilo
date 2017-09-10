@@ -20,10 +20,17 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
 
+  gem 'rspec-rails', '~> 3.6.0'
+
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'web-console', '>= 3.3.0'
+
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :development do
+  gem 'web-console', '>= 3.3.0'   #déplacé dans development only suite au message de la console ($rpec)
+  gem 'spring-commands-rspec'
 end
