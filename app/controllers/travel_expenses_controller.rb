@@ -16,6 +16,11 @@ class TravelExpensesController < ApplicationController
     end
   end
 
+  def destroy
+    travel = TravelExpense.find(params[:id]).delete
+    redirect_to root_path
+  end
+
   private
 
   def travel_params

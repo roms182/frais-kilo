@@ -5,8 +5,8 @@
         <%= f.input :travel_date, input_html: { class: 'form-control',
           id: "datetimepicker4"}, label: "Date" %>
         <%= f.input :travel_purpose, label: "Motif" %>
-        <%= f.input :start_place_name, label: "De", input_html: { value: "9troisquart"} %>
-        <%= f.input :end_place_name, label: "A" %>
+        <%= f.input :start_place_name, label: "De", input_html: { id: "start-place-input", value: "9troisquart"} %>
+        <%= f.input :end_place_name, label: "A", input_html: {id: "end-place-input"} %>
         <%= f.input :return, as: :boolean, checked_value: true, unchecked_value: false, label: "Aller / Retour" %>
         <%= f.input :distance, hint: "En km" %>
         <%= f.button :submit, "Enregistrer", class: "btn btn-primary" %>
@@ -33,6 +33,11 @@
             </td>
             <td>
               <%= t.total_km.to_s.gsub('.', ',') + " km"%>
+            </td>
+            <td>
+              <%= link_to(t, method: :delete) do %>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              <% end %>
             </td>
           </tr>
           <% end %>
