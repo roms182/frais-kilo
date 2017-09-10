@@ -35,11 +35,24 @@ RSpec.describe TravelExpense, type: :model do
     niler(travel, :distance)
     expect(travel).not_to be_valid
   end
+
+  it "is invalid with a date posterious to Today" do
+    travel = new_travel
+    travel.travel_date = (Date.today + 1.day)
+    expect(travel).not_to be_valid
+  end
+
+  it "doubles the distance when return is true" do
+    travel = new_travel
+    travel.distance = 10
+    travel.return = true
+    expect(travel.total_km).to eq(20)
+  end
 end
 
 #-----------------------------------------------------
 def new_travel
-  travel = TravelExpense.new(
+  TravelExpense.new(
       travel_date: '2017/08/20',
       travel_purpose: 'Rencontrer le directeur',
       start_place_name: '9troisquart',

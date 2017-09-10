@@ -5,15 +5,15 @@
         <%= f.input :travel_date, input_html: { class: 'form-control',
           id: "datetimepicker4"}, label: "Date" %>
         <%= f.input :travel_purpose, label: "Motif" %>
-        <%= f.input :start_place_name, label: "De" %>
+        <%= f.input :start_place_name, label: "De", input_html: { value: "9troisquart"} %>
         <%= f.input :end_place_name, label: "A" %>
         <%= f.input :return, as: :boolean, checked_value: true, unchecked_value: false, label: "Aller / Retour" %>
         <%= f.input :distance, hint: "En km" %>
-        <%= f.button :submit, "Enregistrer" %>
+        <%= f.button :submit, "Enregistrer", class: "btn btn-primary" %>
       <% end %>
   </section>
 
-  <section id="travels-histo">
+  <section id="travels-historic">
     <h2> Historique </h2>
       <% months = @travels.pluck(:travel_date).map{ |d| d.month}.uniq %>
       <% months_name = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"] %>
@@ -24,7 +24,7 @@
             <td><strong><%= months_name[m-1] %></strong></td>
             <td><strong><%= @travels.select{ |k| k.travel_date.month == m }.map { |x| x.total_km }.inject(0){|sum,x| sum + x }.to_s.gsub('.', ',') + " km" %></strong></td>
           </tr>
-          <% @travels.select{ |k| k.travel_date.month == m }.each do |t| %>
+          <% @travels.order(travel_date: 'DESC').select{ |k| k.travel_date.month == m }.each do |t| %>
           <tr>
             <td title="Motif : <%= t.travel_purpose %>">
               <%= t.travel_date.day %>/<%= m < 10 ? "0#{m}" : m %>&nbsp;:&nbsp;
