@@ -1,6 +1,6 @@
 <main>
   <section id="new-travel-form">
-    <h1> Nouveau Déplacement </h1>
+    <h1> <%= @travel.id.nil? ? "Nouveau Déplacement" : "Modifier le Déplacement" %></h1>
       <%= simple_form_for @travel do |f| %>
         <%= f.input :travel_date, input_html: { class: 'form-control',
           id: "datetimepicker4"}, label: "Date" %>
@@ -9,7 +9,7 @@
         <%= f.input :end_place_name, label: "A", input_html: {id: "end-place-input"} %>
         <%= f.input :return, as: :boolean, checked_value: true, unchecked_value: false, label: "Aller / Retour" %>
         <%= f.input :distance, hint: "En km" %>
-        <%= f.button :submit, "Enregistrer", class: "btn btn-primary" %>
+        <%= f.button :submit, @travel.id.nil? ? "Enregistrer" : "Valider", class: @travel.id.nil? ? "btn btn-primary" : "btn btn-success", method: @travel.id.nil? ? :post : :patch %>
       <% end %>
   </section>
 
@@ -25,18 +25,20 @@
             <td><strong><%= @travels.select{ |k| k.travel_date.month == m }.map { |x| x.total_km }.inject(0){|sum,x| sum + x }.to_s.gsub('.', ',') + " km" %></strong></td>
           </tr>
           <% @travels.order(travel_date: 'DESC').select{ |k| k.travel_date.month == m }.each do |t| %>
-          <tr>
+          <tr class="tr-select">
             <td title="Motif : <%= t.travel_purpose %>">
-              <%= t.travel_date.day %>/<%= m < 10 ? "0#{m}" : m %>&nbsp;:&nbsp;
-              <%= t.start_place_name %>&nbsp;-
-              <%= t.end_place_name %>&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= link_to edit_travel_expense_path(t) do %>
+                <%= t.travel_date.day %>/<%= m < 10 ? "0#{m}" : m %>&nbsp;:&nbsp;
+                <%= t.start_place_name %>&nbsp;-
+                <%= t.end_place_name %>&nbsp;&nbsp;&nbsp;&nbsp;
+              <% end %>
             </td>
             <td>
               <%= t.total_km.to_s.gsub('.', ',') + " km"%>
             </td>
             <td>
               <%= link_to(t, method: :delete) do %>
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i class="fa fa-times" aria-hidden="true" title="Supprimer"></i>
               <% end %>
             </td>
           </tr>

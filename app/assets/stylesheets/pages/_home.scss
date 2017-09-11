@@ -29,9 +29,15 @@ main{
           width:100%;
           margin:10px auto;
 
+
             tr{
+              box-sizing:border-box;
               td:nth-of-type(1){
                 width:60%;
+                  a,a:hover{
+                    text-decoration:none;
+                  color:inherit;
+                  }
               }
               td:nth-of-type(2){
                 text-align:right;
@@ -40,10 +46,6 @@ main{
                 text-align:center;
                 padding:2px 5px 0px 5px;
               }
-            td:hover{
-              cursor:default;
-            }
-
             }
         }
     }

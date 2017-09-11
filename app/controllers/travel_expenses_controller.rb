@@ -1,9 +1,8 @@
 class TravelExpensesController < ApplicationController
+  before_action :travels, only: [:index, :edit, :update]
 
   def index
     @travel = TravelExpense.new()
-    @travels = TravelExpense.all
-
   end
 
   def create
@@ -12,6 +11,22 @@ class TravelExpensesController < ApplicationController
       redirect_to root_path
     else
       @travels = TravelExpense.all
+      render :index
+    end
+  end
+
+  def edit
+    @travel = TravelExpense.find(params[:id])
+    render :index
+  end
+
+  def update
+    @travel = TravelExpense.find(params[:id])
+    @travel.update_attributes(travel_params)
+    if @travel.save
+      @travel = TravelExpense.new()
+      redirect_to root_path
+    else
       render :index
     end
   end
@@ -25,6 +40,10 @@ class TravelExpensesController < ApplicationController
 
   def travel_params
     params.require(:travel_expense).permit!
+  end
+
+  def travels
+    @travels = TravelExpense.all
   end
 
 end
