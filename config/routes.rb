@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'travel_expenses#index'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope ":locale", locale: /en|fr/ do
+    root to: 'travel_expenses#index'
     resources :travel_expenses
+    get '/test', to: 'pages#test'
+  end
 
 end

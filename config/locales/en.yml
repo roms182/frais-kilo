@@ -30,4 +30,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  travel_expenses:
+    index:
+      title-new: "New Travel Expense"
+      title-edit: "Change Travel Expense"
+      title-histo: "History"
+      form-label-reason: "Reason"
+      form-label-from: "From"
+      form-label-to: "To"
+      form-label-return: "Return"
+      form-button-save: "Save"
+      form-button-change: "Save changes"
+      form-button-cancel: "Cancel"
+  errors:
+    messages:
+      blank: "can't be blank"
+  date:
+    order:
+      - year
+      - month
+      - day

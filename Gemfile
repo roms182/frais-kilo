@@ -7,7 +7,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.1'
 gem 'redis'
-
+gem 'turbolinks', '~> 5.0.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
@@ -19,7 +19,7 @@ gem 'uglifier'
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
-
+  gem 'slim'
   gem 'rspec-rails', '~> 3.6.0'
 
   gem 'pry-byebug'

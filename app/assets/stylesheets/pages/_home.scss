@@ -1,59 +1,51 @@
 // Specific CSS for your home-page
 
 body{
-  background-color:#f9f9f9;
+  background-color:$background-color;
+  font-family:$body-font;
 }
 
-main{
+header.home-page{
   width:70%;
-  margin:80px auto;
+  height:10vh;
+  margin:auto;
+  padding:20px 20px;
+}
+
+div.langage{
+  text-align: right;
+}
+
+main.home-page{
+  width:70%;
+  margin:20px auto;
   display:flex;
   flex-wrap:wrap;
   white-space: nowrap;
-  font-family:"Arial";
 
-    section{
-      flex: 1 1 auto;
-      padding:30px 40px 30px 40px;
-      margin:auto 20px;
-      min-width:400px;
-      background-color:white;
-      border:2px solid #e5e5e5;
-      box-shadow:3px 3px 5px #e1e1e1;
+  section{
+    flex: 1 1 auto;
+    margin:auto 20px;
+    padding:30px 40px 30px 40px;
+    min-width:550px;
+    background-color:white;
+    border:2px solid $border-gray;
+    box-shadow:3px 3px 5px #e1e1e1;
 
-        h1, h2{
-          margin:0px 0px 15px 0px;
-        }
+      .btn{
+        margin-right:8px;
+      }
+  }
 
-        table{
-          width:100%;
-          margin:10px auto;
+  section:nth-of-type(2){
+    align-self:center;
+    color:#555;
+    padding-right:15px;
+  }
 
-
-            tr{
-              box-sizing:border-box;
-              td:nth-of-type(1){
-                width:60%;
-                  a,a:hover{
-                    text-decoration:none;
-                  color:inherit;
-                  }
-              }
-              td:nth-of-type(2){
-                text-align:right;
-              }
-              td:nth-of-type(3){
-                text-align:center;
-                padding:2px 5px 0px 5px;
-              }
-            }
-        }
-    }
-
-
-    section:nth-of-type(2){
-      align-self:center;
-      color:#555;
-      padding-right:15px;
-    }
+  h1, h2{
+    width:100%;
+    margin:0px 0px 15px 0px;
+  }
 }
+

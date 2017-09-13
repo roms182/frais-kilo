@@ -1,0 +1,67 @@
+fr:
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembere]
+    abbr_month_names: [~, Jan, Fév, Mar, Avr, Mai, Juin, Jul, Aoû, Sep, Oct, Nov, Déc]
+    # Used in date_select and datetime_select.
+    order:
+      - day
+      - month
+      - year
+  travel_expenses:
+    index:
+      title-new: "Nouveau Déplacement"
+      title-edit: "Modifier le Déplacement"
+      title-histo: "Historique"
+      form-label-reason: "Motif"
+      form-label-from: "De"
+      form-label-to: "A"
+      form-label-return: " Aller/Retour"
+      form-button-save: "Enregistrer"
+      form-button-change: "Modifier"
+      form-button-cancel: "Annuler"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: doit être accepté(e)
+      blank: doit être rempli(e)
+      present: doit être vide
+      confirmation: ne concorde pas avec %{attribute}
+      empty: doit être rempli(e)
+      equal_to: doit être égal à %{count}
+      even: doit être pair
+      exclusion: n'est pas disponible
+      greater_than: doit être supérieur à %{count}
+      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+      inclusion: n'est pas inclus(e) dans la liste
+      invalid: n'est pas valide
+      less_than: doit être inférieur à %{count}
+      less_than_or_equal_to: doit être inférieur ou égal à %{count}
+      model_invalid: "Validation échouée : %{errors}"
+      not_a_number: n'est pas un nombre
+      not_an_integer: doit être un nombre entier
+      odd: doit être impair
+      required: doit exister
+      taken: n'est pas disponible
+      too_long:
+        one: est trop long (pas plus d'un caractère)
+        other: est trop long (pas plus de %{count} caractères)
+      too_short:
+        one: est trop court (au moins un caractère)
+        other: est trop court (au moins %{count} caractères)
+      wrong_length:
+        one: ne fait pas la bonne longueur (doit comporter un seul caractère)
+        other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
+  buttons:
+    cancel: "Annuler"
