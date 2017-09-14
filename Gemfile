@@ -15,13 +15,13 @@ gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'slim'
 
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'slim'
   gem 'rspec-rails', '~> 3.6.0'
-
   gem 'pry-byebug'
   gem 'pry-rails'
 
