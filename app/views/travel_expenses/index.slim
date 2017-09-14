@@ -10,8 +10,19 @@ main.home-page
       = f.input :travel_date, input_html: { class: 'form-control',
         id: "datetimepicker4"}, label: "Date"
       = f.input :travel_purpose, label: "#{t('.form-label-reason')}"
-      = f.input :start_place_name, label: "#{t('.form-label-from')}", input_html: { id: "start-place-input", value: "9troisquart"}
-      = f.input :end_place_name, label: "#{t('.form-label-to')}", input_html: {id: "end-place-input"}
+      = f.input :start_place_name, label: "#{t('.form-label-from')}", \
+        collection: [t('.form-label-add')] + @travels.map{ |d| d.start_place_name}.uniq, \
+        selected: "9troisquart", \
+        prompt: "#{t('.form-label-prompt')}", \
+        input_html: { id: "start-place-input" }
+      div.add-new-start-place.hidden
+        = f.input :new_start_place
+      = f.input :end_place_name, label: "#{t('.form-label-to')}", \
+        collection: [t('.form-label-add')] + @travels.map{ |d| d.end_place_name}.uniq.sort, \
+        prompt: "#{t('.form-label-prompt')}", \
+        input_html: { id: "end-place-input" }
+      div.add-new-end-place.hidden
+        = f.input :new_end_place, html: { class: "hidden" }
       = f.input :distance_km, label: 'Distance', hint: "En km"
       = f.input :return,:as => :custom_input, label: "#{t('.form-label-return')}", as: :boolean, checked_value: true, unchecked_value: false
       - if @travel.id.nil?
@@ -34,7 +45,8 @@ main.home-page
           tr.tr-select
             td[title="Motif : #{travel.travel_purpose} "]
               = link_to edit_travel_expense_path(travel)
-                = "#{travel.travel_date.day}/#{m} "
+                = l travel.travel_date, format: :tiny
+                |  -
                 = travel.start_place_name + " - "
                 = travel.end_place_name
             td

@@ -7,6 +7,7 @@ fr:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
+      tiny: "%d/%m"
 
     day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
     abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
@@ -27,6 +28,8 @@ fr:
       form-label-reason: "Motif"
       form-label-from: "De"
       form-label-to: "A"
+      form-label-prompt: "Choisir un lieu"
+      form-label-add: "Ajouter un lieu"
       form-label-return: " Aller/Retour"
       form-button-save: "Enregistrer"
       form-button-change: "Modifier"

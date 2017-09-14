@@ -38,6 +38,8 @@ en:
       form-label-reason: "Reason"
       form-label-from: "From"
       form-label-to: "To"
+      form-label-prompt: "Select a destination"
+      form-label-add: "Add New"
       form-label-return: "Return"
       form-button-save: "Save"
       form-button-change: "Save changes"
@@ -50,3 +52,5 @@ en:
       - year
       - month
       - day
+    formats:
+      tiny: "%d/%m"
