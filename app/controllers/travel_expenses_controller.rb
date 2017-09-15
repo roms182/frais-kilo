@@ -8,8 +8,7 @@ class TravelExpensesController < ApplicationController
 
   def create
     @travel = TravelExpense.new(travel_params)
-    @travel.start_place_name = add_new_place[:start] if params[:travel_expense][:new_start_place].present?
-    @travel.end_place_name = add_new_place[:end] if params[:travel_expense][:new_end_place].present?
+    check_for_new_place
     if @travel.save
       @travel.create_return_travel if params[:travel_expense][:return] == 'true'
       redirect_to root_path
@@ -27,6 +26,7 @@ class TravelExpensesController < ApplicationController
   def update
     @travel = TravelExpense.find(params[:id])
     @travel.update_attributes(travel_params)
+    check_for_new_place
     if @travel.save
       @travel = TravelExpense.new()
       redirect_to root_path
@@ -56,10 +56,15 @@ class TravelExpensesController < ApplicationController
     end
   end
 
+  def check_for_new_place
+    @travel.start_place_name = add_new_place[:start] if add_new_place[:start].present?
+    @travel.end_place_name = add_new_place[:end] if add_new_place[:end].present?
+  end
+
   def add_new_place
     #TODO : vérifier que le nouveau nom renseigner ne ressemble pas déjà à un existant
     # ex : Leroy-Merlin & Leroy Merlin
-    { start: params[:travel_expense][:new_start_place],
+      { start: params[:travel_expense][:new_start_place],
       end: params[:travel_expense][:new_end_place] }
   end
 

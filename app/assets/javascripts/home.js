@@ -1,8 +1,16 @@
-// doit pouvoir être refacto...
+// doit pouvoir être refacto... :-/
+if (["> Add New","> Ajouter un lieu"].includes($('#end-place-input').val())) {
+      $('.add-new-end-place').removeClass('hidden');
+    };
+
+if (["> Add New","> Ajouter un lieu"].includes($('#start-place-input').val())) {
+      $('.add-new-start-place').removeClass('hidden');
+    };
+
 $( function() {
 
   $('#start-place-input').change( function(e) {
-    if (["Add New","Ajouter un lieu"].includes($('#start-place-input').val())) {
+    if (["> Add New","> Ajouter un lieu"].includes($('#start-place-input').val())) {
       $('.add-new-start-place').removeClass('hidden').hide().slideDown(800);
     }
     else {
@@ -13,7 +21,7 @@ $( function() {
   })
 
   $('#end-place-input').change( function(e) {
-    if (["Add New","Ajouter un lieu"].includes($('#end-place-input').val())) {
+    if (["> Add New","> Ajouter un lieu"].includes($('#end-place-input').val())) {
       $('.add-new-end-place').removeClass('hidden').hide().slideDown(800);
     }
     else {

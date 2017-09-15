@@ -11,18 +11,18 @@ main.home-page
         id: "datetimepicker4"}, label: "Date"
       = f.input :travel_purpose, label: "#{t('.form-label-reason')}"
       = f.input :start_place_name, label: "#{t('.form-label-from')}", \
-        collection: [t('.form-label-add')] + @travels.map{ |d| d.start_place_name}.uniq, \
-        selected: "9troisquart", \
+        collection: [t('.form-label-add')] + @travels.map{ |d| d.start_place_name }.uniq, \
+        selected: @travel.start_place_name || "9troisquarts", \
         prompt: "#{t('.form-label-prompt')}", \
         input_html: { id: "start-place-input" }
       div.add-new-start-place.hidden
-        = f.input :new_start_place
+        = f.input :new_start_place, label: "#{t('.form-label-new-place')}"
       = f.input :end_place_name, label: "#{t('.form-label-to')}", \
-        collection: [t('.form-label-add')] + @travels.map{ |d| d.end_place_name}.uniq.sort, \
+        collection: [t('.form-label-add')] + @travels.map{ |d| d.end_place_name }.uniq.sort, \
         prompt: "#{t('.form-label-prompt')}", \
         input_html: { id: "end-place-input" }
       div.add-new-end-place.hidden
-        = f.input :new_end_place, html: { class: "hidden" }
+        = f.input :new_end_place, html: { class: "hidden" }, label: "#{t('.form-label-new-place')}"
       = f.input :distance_km, label: 'Distance', hint: "En km"
       = f.input :return,:as => :custom_input, label: "#{t('.form-label-return')}", as: :boolean, checked_value: true, unchecked_value: false
       - if @travel.id.nil?
@@ -41,12 +41,12 @@ main.home-page
         tr
           td: strong = t('date.month_names')[m]
           td: strong = @travels.select{ |k| k.travel_date.month == m }.map { |x| x.distance_km }.inject(0){|sum,x| sum + x }.to_s.gsub('.', ',') + " km"
-        - @travels.order(travel_date: 'DESC').select{ |k| k.travel_date.month == m }.each do |travel|
+        - @travels.order(created_at: 'DESC').select{ |k| k.travel_date.month == m }.each do |travel|
           tr.tr-select
             td[title="Motif : #{travel.travel_purpose} "]
               = link_to edit_travel_expense_path(travel)
                 = l travel.travel_date, format: :tiny
-                |  -
+                | &nbsp;&nbsp;
                 = travel.start_place_name + " - "
                 = travel.end_place_name
             td

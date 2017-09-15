@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TravelExpense, type: :model do
-  it "is valid with a travel_date, travel_purpose, start_place_name, end_place_name and distance" do
+  it "is valid with a travel_date, travel_purpose, start_place_name, end_place_name and distance_km" do
     travel = new_travel
     expect(travel).to be_valid
   end
@@ -32,7 +32,7 @@ RSpec.describe TravelExpense, type: :model do
 
   it "is invalid without a distance" do
     travel = new_travel
-    niler(travel, :distance)
+    niler(travel, :distance_km)
     expect(travel).not_to be_valid
   end
 
@@ -42,12 +42,6 @@ RSpec.describe TravelExpense, type: :model do
     expect(travel).not_to be_valid
   end
 
-  it "doubles the distance when return is true" do
-    travel = new_travel
-    travel.distance = 10
-    travel.return = true
-    expect(travel.total_km).to eq(20)
-  end
 end
 
 #-----------------------------------------------------
@@ -57,7 +51,7 @@ def new_travel
       travel_purpose: 'Rencontrer le directeur',
       start_place_name: '9troisquart',
       end_place_name: 'Kiloutou',
-      distance: 10
+      distance_km: 10
       )
 end
 
