@@ -22,19 +22,19 @@ fr:
       - year
   travel_expenses:
     index:
-      title-new: "Nouveau Déplacement"
-      title-edit: "Modifier le Déplacement"
-      title-histo: "Historique"
-      form-label-reason: "Motif"
-      form-label-from: "De"
-      form-label-to: "A"
-      form-label-prompt: "Choisir un lieu"
+      title-new: Nouveau Déplacement
+      title-edit: Modifier le Déplacement
+      title-histo: Historique
+      form-label-reason: Motif
+      form-label-from: De
+      form-label-to: A
+      form-label-prompt: Choisir un lieu
       form-label-add: "> Ajouter un lieu"
-      form-label-new-place: "Entrer un nouveau lieu"
-      form-label-return: " Aller/Retour"
-      form-button-save: "Enregistrer"
-      form-button-change: "Modifier"
-      form-button-cancel: "Annuler"
+      form-label-new-place: Entrer un nouveau lieu
+      form-label-return: Aller/Retour
+      form-button-save: Enregistrer
+      form-button-change: Modifier
+      form-button-cancel: Annuler
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -67,5 +67,7 @@ fr:
       wrong_length:
         one: ne fait pas la bonne longueur (doit comporter un seul caractère)
         other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
+      same_locations: doit être un lieu différent
+      date_anteriority: doit être antérieur(e)
   buttons:
     cancel: "Annuler"

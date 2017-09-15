@@ -1,6 +1,7 @@
 class TravelExpense < ApplicationRecord
   validate :travel_date_cannot_be_in_the_futur
   validate :add_new_place
+  validate :two_different_location
 
   validates :travel_date, presence: true
   validates :travel_purpose, presence: true
@@ -13,17 +14,21 @@ class TravelExpense < ApplicationRecord
   attr_accessor :return, :new_start_place, :new_end_place
 
   def travel_date_cannot_be_in_the_futur #trouvé sur Stack Overflow
-    errors.add(:travel_date, "Doit être antérieur à la date d'aujourd'hui") if
+    errors.add(:travel_date, :date_anteriority) if
       !travel_date.blank? and travel_date > Date.today
   end
 
   def add_new_place         #je n'arrive pas à inclure I18n ici
     if (["> Add New", "> Ajouter un lieu"].include?(start_place_name) && new_start_place == "")
-      errors.add(:new_start_place, "can't be blank")
+      errors.add(:new_start_place, :blank)
     end
     if (["> Add New", "> Ajouter un lieu"].include?(end_place_name) && new_end_place == "")
-      errors.add(:new_end_place, "can't be blank")
+      errors.add(:new_end_place, :blank)
     end
+  end
+
+  def two_different_location
+    errors.add(:end_place_name, :same_locations) if end_place_name == start_place_name
   end
 
   def create_return_travel

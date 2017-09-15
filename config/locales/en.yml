@@ -32,22 +32,24 @@
 en:
   travel_expenses:
     index:
-      title-new: "New Travel Expense"
-      title-edit: "Change Travel Expense"
-      title-histo: "History"
-      form-label-reason: "Reason"
-      form-label-from: "From"
-      form-label-to: "To"
-      form-label-prompt: "Select a destination"
+      title-new: New Travel Expense
+      title-edit: Change Travel Expense
+      title-histo: History
+      form-label-reason: Reason
+      form-label-from: From
+      form-label-to: To
+      form-label-prompt: Select a destination
       form-label-add: "> Add New"
-      form-label-new-place: "Enter a new place"
-      form-label-return: "Return"
-      form-button-save: "Save"
-      form-button-change: "Save changes"
-      form-button-cancel: "Cancel"
-  errors:
-    messages:
-      blank: "can't be blank"
+      form-label-new-place: Enter a new place
+      form-label-return: Return
+      form-button-save: Save
+      form-button-change: Save changes
+      form-button-cancel: Cancel
+  activerecord:
+    errors:
+      messages:
+        same_locations: can't be the same place
+        date_anteriority: can't be posterior
   date:
     order:
       - year

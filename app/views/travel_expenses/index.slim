@@ -41,7 +41,7 @@ main.home-page
         tr
           td: strong = t('date.month_names')[m]
           td: strong = @travels.select{ |k| k.travel_date.month == m }.map { |x| x.distance_km }.inject(0){|sum,x| sum + x }.to_s.gsub('.', ',') + " km"
-        - @travels.order(created_at: 'DESC').select{ |k| k.travel_date.month == m }.each do |travel|
+        - @travels.order(travel_date: 'DESC', created_at: 'DESC').select{ |k| k.travel_date.month == m }.each do |travel|
           tr.tr-select
             td[title="Motif : #{travel.travel_purpose} "]
               = link_to edit_travel_expense_path(travel)
